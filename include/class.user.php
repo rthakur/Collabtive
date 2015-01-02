@@ -28,6 +28,8 @@ class user {
         global $conn,$mylog;
         $pass = sha1($pass);
 
+		if(count($this->getId($name))>0)
+           return false;
         $ins1Stmt = $conn->prepare("INSERT INTO user (name,email,company,pass,locale,tags,rate) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $ins1 = $ins1Stmt->execute(array($name, $email, $company, $pass, $locale, $tags, $rate));
 
